@@ -1,10 +1,7 @@
-using System.Diagnostics;
-using System.Reflection;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace API.Helpers
 {
@@ -18,6 +15,7 @@ namespace API.Helpers
             .ForMember(dest => dest.Age, opt => opt
                 .MapFrom(scr => scr.DateOfBirth.CalculateAge()));
             CreateMap<Photo, PhotoDto>();
+            CreateMap<MemberUpdateDto, AppUser>();
         }
     }
 }
