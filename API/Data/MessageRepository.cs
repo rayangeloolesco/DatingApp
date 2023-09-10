@@ -40,12 +40,21 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
+<<<<<<< HEAD
                 "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username 
                     && u.RecipientDeleted == false),
                 "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username
                     && u.SenderDeleted == false),
                 _ => query.Where(u => u.RecipientUsername == messageParams.Username && u.DateRead == null
                     && u.RecipientDeleted == false)
+=======
+                "Inbox" => query.Where(u => u.RecipientUsername == messageParams.Username),
+                "Outbox" => query.Where(u => u.SenderUsername == messageParams.Username),
+                _
+                    => query.Where(
+                        u => u.RecipientUsername == messageParams.Username && u.DateRead == null
+                    )
+>>>>>>> 98e41f5f3b6b8e998056840b1cc1495fb5ca7260
             };
 
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
@@ -69,12 +78,21 @@ namespace API.Data
                 .ThenInclude(p => p.Photos)
                 .Where(
                     m =>
+<<<<<<< HEAD
                         m.RecipientUsername == currentUserName && m.RecipientDeleted == false
                             && m.SenderUsername == recipientUserName 
                         || m.RecipientUsername == recipientUserName && m.SenderDeleted == false
                             && m.SenderUsername == currentUserName
                 )
                 .OrderBy(messages => messages.MessageSent)
+=======
+                        m.RecipientUsername == currentUserName
+                            && m.SenderUsername == recipientUserName
+                        || m.RecipientUsername == recipientUserName
+                            && m.SenderUsername == currentUserName
+                )
+                .OrderByDescending(messages => messages.MessageSent)
+>>>>>>> 98e41f5f3b6b8e998056840b1cc1495fb5ca7260
                 .ToListAsync();
 
             var unreadMessages = messages

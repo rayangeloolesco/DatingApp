@@ -86,6 +86,7 @@ namespace API.Controllers
 
             return Ok(await _messageRepository.GetMessageTread(currentUsername, username));
         }
+<<<<<<< HEAD
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteMessage(int id){
@@ -107,5 +108,7 @@ namespace API.Controllers
 
             return BadRequest("Problem deleting the message");
         }
+=======
+>>>>>>> 98e41f5f3b6b8e998056840b1cc1495fb5ca7260
     }
 }
