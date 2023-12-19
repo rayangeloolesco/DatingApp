@@ -4,7 +4,7 @@ namespace API.Entities
 {
     public class AppUser: IdentityUser<int>
     {
-        public byte[] PasswordSalt { get; set; }
+        //public byte[] PasswordSalt { get; set; } change deleted
         public DateOnly DateOfBirth { get; set; }
         public string KnownAs { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;

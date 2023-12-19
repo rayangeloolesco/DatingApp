@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
 using API.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +14,7 @@ namespace API.Data
 
             var useData = await File.ReadAllTextAsync("Data/UserSeedData.json");
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var users = JsonSerializer.Deserialize<List<AppUser>>(useData);
+            var users = JsonSerializer.Deserialize<List<AppUser>>(useData, options); // options has been added
 
             var roles = new List<AppRole>
             {
@@ -43,8 +41,7 @@ namespace API.Data
             };
 
             await userManager.CreateAsync(admin, "Pa$$w0rd");
-            await userManager.AddToRoleAsync(admin, "Admin");
-            await userManager.AddToRoleAsync(admin, "Moderator");
+            await userManager.AddToRolesAsync(admin, new[] { "Admin", "Moderator" }); // has been change to original code
         }
     }
 }
