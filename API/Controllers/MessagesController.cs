@@ -91,7 +91,7 @@ namespace API.Controllers
         public async Task<ActionResult> DeleteMessage(int id){
             var username = User.GetUsername();
 
-            var message = await _messageRepository.GetMeessage(id);
+            var message = await _messageRepository.GetMessage(id);
 
             if (message.SenderUsername != username && message.RecipientUsername != username)
                 return Unauthorized();
