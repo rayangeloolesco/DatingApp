@@ -10,7 +10,7 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
-import { PreventUnsavedChangesGuard } from './_guard/prevent-unsaved-changes.guard';
+import { preventUnsavedChangesGuard } from './_guard/prevent-unsaved-changes.guard';
 import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guard/admin.guard';
@@ -31,7 +31,7 @@ const routes: Routes = [
       {
         path: 'member/edit',
         component: MemberEditComponent,
-        canDeactivate: [PreventUnsavedChangesGuard],
+        canDeactivate: [preventUnsavedChangesGuard],
       },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },

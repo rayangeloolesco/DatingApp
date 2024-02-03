@@ -12,18 +12,17 @@ import { MembersService } from '../_services/members.service';
 export class NavComponent implements OnInit {
   model: any = {};
 
-  constructor(
-    public accountService: AccountService,
-    private router: Router,
-    private toastr: ToastrService
-  ) {}
+  constructor(public accountService: AccountService, private router: Router) {}
 
   ngOnInit(): void {}
 
   login() {
     this.accountService.login(this.model).subscribe({
-      next: () => this.router.navigateByUrl('/members')
-    })
+      next: () => {
+        this.router.navigateByUrl('/members');
+        this.model = {};
+      },
+    });
   }
 
   logout() {
